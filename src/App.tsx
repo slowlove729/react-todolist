@@ -1,8 +1,8 @@
-import React from 'react';
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from 'styled-components';
+import ToDoList from './ToDoList';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -54,10 +54,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:${(props) => props.theme.bgColor};
+    color:${(props) => props.theme.textColor};
+    line-height: 1.2;
   }
   a {
-    text-decoration: none;
+    text-decoration:none;
     color:inherit;
   }
 `;
@@ -66,6 +70,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <ToDoList />
     </>
   );
 }
