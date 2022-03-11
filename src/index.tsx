@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
+import App from './App';
 import { darkTheme } from './theme';
 
 ReactDOM.render(
@@ -13,5 +13,5 @@ ReactDOM.render(
       </ThemeProvider>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { createGlobalStyle } from 'styled-components';
 import ToDoList from './ToDoList';
 
