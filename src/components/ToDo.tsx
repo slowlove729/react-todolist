@@ -14,7 +14,7 @@ function ToDo() {
       <ToDoForm />
       <ul>
         {toDos.map((todo) => (
-          <ToDoList {...todo} />
+          <ToDoList key={todo.id} {...todo} />
         ))}
       </ul>
     </div>
