@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { createGlobalStyle } from 'styled-components';
-import ToDoList from './ToDoList';
+import ToDo from './components/ToDo';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -71,7 +71,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ToDoList />
+      <ToDo />
     </>
   );
 }
