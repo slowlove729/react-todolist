@@ -1,11 +1,30 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { IToDo, toDoState } from '../atoms';
+import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
+import { Categories, IToDo, toDoState } from '../atoms';
+
+const ToDoText = styled.span`
+  color: ${(props) => props.theme.accentColor};
+  background-color: ${(props) => props.theme.cardBgColor};
+  display: inline-block;
+  width: 200px;
+`;
+
+const Button = styled.button`
+  background-color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
+  text-align: right;
+  display: inline-block;
+`;
+
+const List = styled.li`
+  padding: 3px;
+`;
 
 function ToDoList({ text, catecogy, id }: IToDo) {
-  const [toDos, setToDos] = useRecoilState(toDoState);
+  const setToDos = useSetRecoilState(toDoState);
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
       currentTarget: { name },
@@ -20,24 +39,24 @@ function ToDoList({ text, catecogy, id }: IToDo) {
   };
 
   return (
-    <li className={catecogy}>
-      <span>{text}</span>
-      {catecogy !== 'Todo' ? (
-        <button name='Todo' onClick={onClick}>
+    <List>
+      <ToDoText>{text}</ToDoText>
+      {catecogy !== Categories.Todo ? (
+        <Button name={Categories.Todo} onClick={onClick}>
           ToDo
-        </button>
+        </Button>
       ) : null}
-      {catecogy !== 'Doing' ? (
-        <button name='Doing' onClick={onClick}>
+      {catecogy !== Categories.Doing ? (
+        <Button name={Categories.Doing} onClick={onClick}>
           Doing
-        </button>
+        </Button>
       ) : null}
-      {catecogy !== 'Done' ? (
-        <button name='Done' onClick={onClick}>
+      {catecogy !== Categories.Done ? (
+        <Button name={Categories.Done} onClick={onClick}>
           Done
-        </button>
+        </Button>
       ) : null}
-    </li>
+    </List>
   );
 }
 

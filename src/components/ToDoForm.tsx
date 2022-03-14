@@ -1,7 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
-import { toDoState } from '../atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
+import { categoryState, toDoState } from '../atoms';
+
+const Form = styled.form`
+  margin: 10px 0px;
+`;
 
 interface IForm {
   ToDo: string;
@@ -9,7 +14,7 @@ interface IForm {
 
 function ToDoForm() {
   const toDosMod = useSetRecoilState(toDoState);
-
+  const category = useRecoilValue(categoryState);
   const {
     register,
     handleSubmit,
@@ -17,12 +22,12 @@ function ToDoForm() {
     formState: { errors },
   } = useForm<IForm>();
   const onValid = (data: IForm) => {
-    toDosMod((oldToDos) => [{ text: data.ToDo, id: Date.now(), catecogy: 'Todo' }, ...oldToDos]);
+    toDosMod((oldToDos) => [{ text: data.ToDo, id: Date.now(), catecogy: category }, ...oldToDos]);
     setValue('ToDo', '');
   };
 
   return (
-    <form onSubmit={handleSubmit(onValid)}>
+    <Form onSubmit={handleSubmit(onValid)}>
       <input
         {...register('ToDo', { required: 'Please Write a Todo' })}
         type='text'
@@ -30,7 +35,7 @@ function ToDoForm() {
       />
       <span>{errors?.ToDo?.message}</span>
       <button type='submit'>Add</button>
-    </form>
+    </Form>
   );
 }
 
